@@ -12,5 +12,5 @@ class ExceptionCodes
 	public static $setEcp = ['msg'=>'set异常', 'code'=>-11];
 	public static $getEcp = ['msg'=>'get异常', 'code'=>-12];
 	public static $setSingleEcp = ['msg'=>'setSingle异常', 'code'=>-13];
-
+	public static $getSingleEcp = ['msg'=>'getSingle异常', 'code'=>-14];
 }
