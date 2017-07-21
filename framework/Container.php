@@ -10,9 +10,9 @@ use framework\exception\ExceptionCodes;
 class Container
 {
 	// 类映射
-	private $classMap;
+	private $classMap = [];
 	// 类实例映射
-	public $instanceMap;
+	public $instanceMap = [];
 
 	// 注册一个类
 	public function set($alais = '', $objectName = '')

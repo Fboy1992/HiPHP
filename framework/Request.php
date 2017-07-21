@@ -65,7 +65,7 @@ class Request
 	// 加载环境参数
 	private function loadEnv(App $app)
 	{
-		$env = parse_ini_file($this->rootPath . '/.env', true);
+		$env = parse_ini_file($app->rootPath . '/.env', true);
 		$this->envParams = array_merge($_ENV, $env);
 	}
 

@@ -16,7 +16,7 @@ try {
 	//
 	// ---------- init ---------- //
 	$app = new App(ROOT_PATH, function() {
-
+		return require( __DIR__ . '/Load.php');
 	});
 
 	// ---------- loading handle module ---------- //
@@ -30,6 +30,7 @@ try {
 	$app->run(function() use ($app) {
 		return new Request($app);
 	});
+	
 	// ---------- stop app and response ---------- //
 	$app->response(function() {
 		return new Response(); 
