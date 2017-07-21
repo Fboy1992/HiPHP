@@ -1,2 +1,2 @@
 ## HiPHP
-+ it is a lightweight php framework for studing
++ it is a lightweight php framework for studying
