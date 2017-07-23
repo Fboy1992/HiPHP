@@ -70,7 +70,7 @@ class Request
 	}
 
 	// 获取request参数
-	public function request($value = '', $default, $checkEmpty = true)
+	public function request($value = '', $default = '', $checkEmpty = true)
 	{
 		if (! isset($this->requestParams[$value])) {
 			return '';

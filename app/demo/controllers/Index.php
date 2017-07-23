@@ -19,4 +19,9 @@ class Index
 			'msg'=>'yes'
 		];
 	}
+
+	public function test()
+	{
+		return ['test'=>'first'];
+	}
 }

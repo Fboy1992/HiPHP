@@ -157,8 +157,24 @@ class RouterHandle extends Handle
 
 	public function general()
 	{
-		// 解析参数
+		// 解析参数 
 		$app = $this->app;
+		$request = $app::$container->getSingle('request');
+		$moduleName =  $request->request('module');
+		$controllerName = $request->request('controller');
+		$actionName = $request->request('action');
+
+		if (!empty($moduleName)) {
+			$this->moduleName = $moduleName;
+		}
+		if (!empty($controllerName)) {
+			$this->controllerName = $controllerName;
+		}
+		if (!empty($actionName)) {
+			$this->actionName = $actionName;
+		}
+
+		// cli 模式
 	}
 	public function pathinfo()
 	{
