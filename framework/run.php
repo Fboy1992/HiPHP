@@ -7,6 +7,7 @@ namespace framework;
 use framework\Request;
 use framework\Response;
 use framework\App;
+use framework\handle\ConfigHandle;
 
 require_once(__DIR__ . '/App.php');
 
@@ -20,12 +21,46 @@ try {
 	});
 
 	// ---------- loading handle module ---------- //
-	// $app->load(function () {
-	//	return new Response();
-	// });
+	
+	// config 
+	$app->load(function () {
+		return new ConfigHandle();
+	});
+	// log
+	$app->load(function () {
+		echo "load log\n";
+	});
+	
+	// error
+	$app->load(function () {
+		echo "load error\n";
+	});
+	 
+	// exception
+	$app->load(function () {
+		echo "load exception\n";
+	});
 	// 
-	// 
-	// 
+	// router
+	$app->load(function () {
+		echo "load router\n";
+	});
+	// db
+	$app->load(function () {
+		echo "load db\n";
+	});
+	// nosql
+	$app->load(function () {
+		echo "load nosql\n";
+	});
+	// userDefined
+	$app->load(function() {
+		echo "load userDefined\n";
+	});
+
+
+
+
 	// ---------- start app ---------- //
 	$app->run(function() use ($app) {
 		return new Request($app);

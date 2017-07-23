@@ -4,6 +4,7 @@
  */
 namespace framework;
 
+use framework\App;
 class Response
 {
 	public $response = [
@@ -16,6 +17,8 @@ class Response
 	];
 	public function response($response = [])
 	{
+
+		//dump($app::$container);
 		header('Content-Type:Application/json; Charset=utf-8');
 		die(json_encode(
 			$this->response,

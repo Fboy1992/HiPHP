@@ -92,4 +92,13 @@ class Request
 		$this->name = $value;
 	}
 
+	// 获取env参数
+	public function env($value = '')
+	{
+		if (isset($this->envParams[$value])) {
+			return $this->envParams[$value];
+		}
+		return '';
+	}
+
 }
