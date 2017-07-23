@@ -61,12 +61,13 @@ class App
 		self::$container->setSingle('request', $request);
 		foreach ($this->handlesList as $handle) {
 			$instance = $handle();
-			self::$container->setSingle(get_class($instance), $instance);
 
-
-			//
-			$instance->register($this);
-
+			if (is_callable($instance) || is_object($instance)) {
+				self::$container->setSingle(get_class($instance), $instance);
+				$instance->register($this);
+			} else {
+				// TODO
+			}
 		}
 	}
 

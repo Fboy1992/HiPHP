@@ -28,14 +28,15 @@ class Load
 	private static function autoload($class)
 	{
 		$classOrigin = $class;
+		// 类名不能为小写
 		$classInfo = explode('\\', $class);
 		$className = array_pop($classInfo);
-
 		foreach ($classInfo as &$v) {
 			$v = strtolower($v);
 		}
 		array_push($classInfo, $className);
 		$class = implode('\\', $classInfo);
+		
 		$path = self::$namespaceMap['framework'];
 		$classPath = $path . '/' . str_replace('\\', '/', $class) . '.php';
 		
