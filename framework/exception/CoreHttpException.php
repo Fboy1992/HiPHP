@@ -8,8 +8,8 @@ use Exception;
 
 class CoreHttpException extends Exception
 {
-	private $code = '';
-	private $msg = '';
+	protected $code = '';
+	protected $msg = '';
 
 	private $httpCodes = [
 		200 => 'success',

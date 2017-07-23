@@ -43,6 +43,8 @@ class Load
 		// composer
 
 		self::$map[$classOrigin] = $classPath;
-		require $classPath;
+		//if (file_exists($classPath)) {
+			require $classPath;
+		//}
 	}
 }

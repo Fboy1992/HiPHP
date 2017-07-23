@@ -8,6 +8,7 @@ use framework\Request;
 use framework\Response;
 use framework\App;
 use framework\handle\ConfigHandle;
+use framework\handle\RouterHandle;
 
 require_once(__DIR__ . '/App.php');
 
@@ -26,8 +27,16 @@ try {
 	$app->load(function () {
 		return new ConfigHandle();
 	});
+
+	// router
+	$app->load(function () {
+		return new RouterHandle();
+	});
+
 	// log
 	$app->load(function () {
+
+		echo "\n\n\n";
 		echo "load log\n";
 	});
 	
@@ -41,10 +50,7 @@ try {
 		echo "load exception\n";
 	});
 	// 
-	// router
-	$app->load(function () {
-		echo "load router\n";
-	});
+
 	// db
 	$app->load(function () {
 		echo "load db\n";

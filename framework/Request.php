@@ -101,4 +101,13 @@ class Request
 		return '';
 	}
 
+	// server 方法 拿到一些server变量值
+	public function server($value = '')
+	{
+		if (isset($this->serverParams[$value])) {
+			return $this->serverParams[$value];
+		}
+		return '';
+	}
+
 }

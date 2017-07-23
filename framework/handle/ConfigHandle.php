@@ -5,8 +5,9 @@
 namespace framework\handle;
 
 use framework\App;
+use framework\handle\Handle;
 
-class ConfigHandle
+class ConfigHandle extends Handle
 {
 	private $app;
 	private $config;
