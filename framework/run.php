@@ -10,6 +10,7 @@ use framework\App;
 use framework\handle\ConfigHandle;
 use framework\handle\RouterHandle;
 use framework\exception\CoreHttpException;
+use framework\handle\LogHandle;
 
 require_once(__DIR__ . '/App.php');
 
@@ -36,13 +37,12 @@ try {
 
 	// log
 	$app->load(function () {
-
-		echo "\n\n\n";
-		echo "load log\n";
+		return new LogHandle();
 	});
 	
 	// error
 	$app->load(function () {
+		echo "\n\n\n";
 		echo "load error\n";
 	});
 	 

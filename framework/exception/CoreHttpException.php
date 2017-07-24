@@ -9,7 +9,7 @@ use Exception;
 class CoreHttpException extends Exception
 {
 	protected $code = '';
-	protected $msg = '';
+	protected $message = '';
 
 	private $httpCodes = [
 		200 => 'success',
@@ -28,9 +28,9 @@ class CoreHttpException extends Exception
 		//parent::__construct($msg, $code);
 		$this->code = $code;
 		if (empty($msg)) {
-			$this->msg = $this->httpCodes[$this->code];
+			$this->message = $this->httpCodes[$this->code];
 		} else {
-			$this->msg = $msg . ' : ' . $this->httpCodes[$this->code];
+			$this->message = $msg . ' : ' . $this->httpCodes[$this->code];
 		}
 	}
 	// rest 风格http响应
