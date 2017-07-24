@@ -11,6 +11,8 @@ use framework\handle\ConfigHandle;
 use framework\handle\RouterHandle;
 use framework\exception\CoreHttpException;
 use framework\handle\LogHandle;
+use framework\handle\ErrorHandle;
+use framework\handle\ExceptionHandle;
 
 require_once(__DIR__ . '/App.php');
 
@@ -42,18 +44,20 @@ try {
 	
 	// error
 	$app->load(function () {
-		echo "\n\n\n";
-		echo "load error\n";
+		return new ErrorHandle();
+		
 	});
 	 
 	// exception
 	$app->load(function () {
-		echo "load exception\n";
+		return new ExceptionHandle();
 	});
 	// 
 
 	// db
 	$app->load(function () {
+
+		echo "\n\n\n";
 		echo "load db\n";
 	});
 	// nosql
