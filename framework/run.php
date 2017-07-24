@@ -9,6 +9,7 @@ use framework\Response;
 use framework\App;
 use framework\handle\ConfigHandle;
 use framework\handle\RouterHandle;
+use framework\exception\CoreHttpException;
 
 require_once(__DIR__ . '/App.php');
 
@@ -77,6 +78,7 @@ try {
 		return new Response(); 
 	});
 	
-} catch (Exception $e) {
-	echo $e->getMessage();
+} catch (CoreHttpException $e) {
+	// 捕获自定义的异常
+	$e->response();
 }
