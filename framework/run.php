@@ -13,12 +13,15 @@ use framework\exception\CoreHttpException;
 use framework\handle\LogHandle;
 use framework\handle\ErrorHandle;
 use framework\handle\ExceptionHandle;
+use framework\handle\UserDefinedHandle;
 
 require_once(__DIR__ . '/App.php');
 
 try {
 	// 加载
 	//echo "load";
+	//
+	//
 	//
 	// ---------- init ---------- //
 	$app = new App(ROOT_PATH, function() {
@@ -54,19 +57,18 @@ try {
 	});
 	// 
 
-	// db
-	$app->load(function () {
-
-		echo "\n\n\n";
-		echo "load db\n";
-	});
+	// // db
+	// $app->load(function () {
+	// 	return new DbHandle();
+	// });
 	// nosql
 	$app->load(function () {
-		echo "load nosql\n";
+
+		
 	});
 	// userDefined
 	$app->load(function() {
-		echo "load userDefined\n";
+		return new UserDefinedHandle();
 	});
 
 

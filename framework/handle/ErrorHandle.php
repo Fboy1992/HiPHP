@@ -45,7 +45,7 @@ class ErrorHandle extends Handle
 		$errorMessage,
 		$errorFile,
 		$errorLine,
-		$errorContex
+		$errorContext
 	) {
 		$errorInfo = [
 			'type'    => $errorNumber,

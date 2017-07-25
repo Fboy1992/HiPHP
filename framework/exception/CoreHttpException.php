@@ -55,7 +55,7 @@ class CoreHttpException extends Exception
 		die(json_encode($data, JSON_UNESCAPED_UNICODE));
 	}
 	// rest 风格http异常
-	public function responseErr($e)
+	public static function responseErr($e)
 	{
 		$data = [
 			'__coreError' => [
