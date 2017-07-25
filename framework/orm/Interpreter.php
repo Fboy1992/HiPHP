@@ -76,8 +76,12 @@ trait Interpreter
 	
 	// where 语句
 	// 
-	public function where($data = array())
+	public function where($data = [])
 	{
-		
+		if (empty($data)) {
+			return;
+		}
+
+		$count = count($data);
 	}
 }
