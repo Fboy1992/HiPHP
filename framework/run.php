@@ -4,16 +4,17 @@
  */
 namespace framework;
 
+use framework\App;
 use framework\Request;
 use framework\Response;
-use framework\App;
 use framework\handle\ConfigHandle;
 use framework\handle\RouterHandle;
-use framework\exception\CoreHttpException;
 use framework\handle\LogHandle;
 use framework\handle\ErrorHandle;
 use framework\handle\ExceptionHandle;
+use framework\handle\NosqlHandle;
 use framework\handle\UserDefinedHandle;
+use framework\exception\CoreHttpException;
 
 require_once(__DIR__ . '/App.php');
 
@@ -57,20 +58,14 @@ try {
 	});
 	// 
 
-	// // db
-	// $app->load(function () {
-	// 	return new DbHandle();
-	// });
 	// nosql
 	$app->load(function () {
-
-		
+		return new NosqlHandle();
 	});
 	// userDefined
 	$app->load(function() {
 		return new UserDefinedHandle();
 	});
-
 
 
 
