@@ -10,6 +10,7 @@ use framework\exception\CoreHttpException;
 
 class DB
 {
+	// 使用了 trait
 	use Interpreter;
 
 	// 数据库类型
@@ -18,7 +19,7 @@ class DB
 	protected $tableName = '';
 	// 数据库策略映射
 	protected $dbStrategyMap = [
-		'mysqldb' => 'framework\orm\Mysql'
+		'mysqldb' => 'framework\orm\db\Mysql'
 	];
 	// 数据库实例
 	protected $dbInstance;
@@ -38,8 +39,37 @@ class DB
 	];
 
 	public function __construct()
-	{
+	{}
 
+	
+	public function debug($data = [])
+	{}
+
+	public function buildSql()
+	{
+		if (!empty($this->where)) {
+			$this->sql .= $this->where;
+		}
+		if (!empty($this->ordreBy)) {
+			$this->sql .= $this->orderBy;
+		}
+		if (!empty($this->limit)) {
+			$this->sql .= $this->limit;
+		}
+		$this->init();
+	}
+	// 初始化策略
+	public function init($masterOrSlave = '')
+	{
+		
+		$config = App::$container->getSingle('config');
+		$this->dbtype = $config->config['database']['dbtype'];
+
+		if (!empty($masterOrSlave)) {
+			$this->masterSlave = $masterOrSlave;
+		}
+		$this->isMasterOrSlave();
+		$this->decide();
 	}
 
 	// 设置设置表名
@@ -58,24 +88,12 @@ class DB
 		return $db;
 	}
 
-	// 初始化策略
-	public function init($masterOrSlave = '')
-	{
-		$config = App::$container->getSingle('config');
-		$this->dbtype = $config->config['database']['dbtype'];
-
-		if (!empty($masterOrSlave)) {
-			$this->masterSlave = $masterOrSlave;
-		}
-		$this->isMasterOrSlave();
-		$this->decide();
-	}
-
 
 	// 策略决策
 	public function decide()
 	{
 		$dbStrategyName = $this->dbStrategyMap[$this->dbtype];
+
 		$dbConfig = $this->dbConfig;
 		// 注入容器
 		$this->dbInstance = App::$container->getSingle(
@@ -117,6 +135,8 @@ class DB
 		$this->dbConfig['dbname'] = $dbConfig['dbname'];
 		$this->dbConfig['username'] = $dbConfig['username'];
 		$this->dbConfig['password'] = $dbConfig['password'];
+
+		$this->masterSlave = 'master';
 	}
 
 	// 初始化从库
@@ -141,7 +161,7 @@ class DB
 	}
 
 	// 查询一条语句
-	public function findOne($data = [])
+	public function findOne($data = []) 
 	{
 		$this->select($data);
 		$this->buildSql();
@@ -209,19 +229,7 @@ class DB
 		return $this->dbInstance->query($this);
 	}
 
-	public function buildSql()
-	{
-		if (!empty($this->where)) {
-			$this->sql .= $this->where;
-		}
-		if (!empty($this->ordreBy)) {
-			$this->sql .= $this->orderBy;
-		}
-		if (!empty($this->limit)) {
-			$this->sql .= $this->limit;
-		}
-		$this->init();
-	}
+	
 
 	public static function beginTransaction()
 	{

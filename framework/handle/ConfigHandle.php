@@ -42,7 +42,10 @@ class ConfigHandle extends Handle
 	{
 		// 加载公共配置
 		$defaultCommon = require($app->rootPath . '/config/common.php');
-		$this->config = array_merge($defaultCommon);
+		// 数据库配置
+		$databaseCfg = require($app->rootPath . '/config/database.php');
+		// nosql配置
+		$this->config = array_merge($defaultCommon, $databaseCfg);
 
 		// 加载自定义配置
 		// module 哪里拿到的？

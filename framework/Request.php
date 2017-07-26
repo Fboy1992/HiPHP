@@ -110,4 +110,27 @@ class Request
 		return '';
 	}
 
+	// 获取GET参数
+	public function get($value = '', $default = '', $checkEmpty = true)
+	{
+		
+		if (empty($this->getParams[$value]) && $checkEmpty) {
+			return $default;
+		}
+		return htmlspecialchars($this->getParams[$value]);
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

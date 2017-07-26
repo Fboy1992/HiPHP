@@ -15,7 +15,7 @@ class Mysql
 	// db name
 	private $dbname = '';
 	// db connect info
-	private $dns = '';
+	private $dsn = '';
 	// db username
 	private $username = '';
 	// db password
@@ -34,7 +34,7 @@ class Mysql
 	) {
 		$this->dbhost = $dbhost;
 		$this->dbname = $dbname;
-		$this->dsn    = "mysql:dbname{$this->dbname};host={$this->dbhost};";
+		$this->dsn    = "mysql:dbname={$this->dbname};host={$this->dbhost};";
 		$this->username = $username;
 		$this->password = $password;
 
@@ -65,7 +65,10 @@ class Mysql
 	//
 	public function findOne(DB $db)
 	{
+
+		
 		$this->pdoStatement = $this->pdo->prepare($db->sql);
+		
 		$this->bindValue($db);
 		$this->pdoStatement->execute();
 

@@ -37,10 +37,11 @@ class Model extends DB
 		if (!isset($match[1][0]) || empty($match[1][0])) {
 			throw new CoreHttpException(401, 'model name invalid');			
 		}
+
 		$match = $match[1];
 		$count = count($match);
-
-		if ($count === 1) {
+		
+		if ($count == 1) {
 			$this->tableName = strtolower($match[0]);
 			if (empty($prefix)) {
 				return;
@@ -59,4 +60,5 @@ class Model extends DB
 		}
 		$this->tableName = $prefix . '_' . $this->tableName;
 	}
+	
 }
