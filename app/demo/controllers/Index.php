@@ -11,10 +11,6 @@ use Exception;
 
 class Index
 {
-	public function __construct()
-	{
-		
-	}
 
 	public function hello()
 	{
@@ -26,10 +22,12 @@ class Index
 		];
 	}
 
-	public function getOne()
+	public function user()
 	{
 
 		// 获取请求的参数, // 路由解析
+		// 
+		// 鉴权
 		$request = App::$container->getSingle('request');
 		$id      = intval($request->get('id', 2));
 		$cf      = App::$container->getSingle('config');
